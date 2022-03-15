@@ -1,8 +1,7 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
 from apps import home, heatmap, upload  # import your app modules here
-import ee
-ee.Initialize()
+
 st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 
 # A dictionary of apps in the format of {"App title": "App icon"}
