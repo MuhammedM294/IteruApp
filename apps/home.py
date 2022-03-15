@@ -1,5 +1,6 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
+import iteru
 
 
 def app():
@@ -13,7 +14,8 @@ def app():
 
     """
     )
-
-    m = leafmap.Map(locate_control=True)
-    m.add_basemap("ROADMAP")
-    m.to_streamlit(height=700)
+    m = iteru.Map()
+    m
+    #m = leafmap.Map(locate_control=True)
+    # m.add_basemap("ROADMAP")
+    # m.to_streamlit(height=700)
