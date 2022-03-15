@@ -14,8 +14,6 @@ def app():
 
     """
     )
-    m = iteru.Map()
-    m
-    #m = leafmap.Map(locate_control=True)
-    # m.add_basemap("ROADMAP")
-    # m.to_streamlit(height=700)
+    m = leafmap.Map(locate_control=True)
+    m.add_basemap("ROADMAP")
+    m.to_streamlit(height=700)
