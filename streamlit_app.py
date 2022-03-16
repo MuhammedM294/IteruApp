@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from apps import home, heatmap, upload  # import your app modules here
+from apps import home, heatmap  # import your app modules here
 
 st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 
