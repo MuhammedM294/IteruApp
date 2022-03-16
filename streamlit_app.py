@@ -10,7 +10,6 @@ st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 apps = {
     "home": {"title": "Home", "icon": "house"},
     "heatmap": {"title": "Heatmap", "icon": "map"},
-    "upload": {"title": "Upload", "icon": "cloud-upload"},
 }
 
 titles = [app["title"] for app in apps.values()]
