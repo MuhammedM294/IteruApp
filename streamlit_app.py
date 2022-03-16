@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from apps import home, heatmap  # import your app modules here
+from apps import home, heatmap  
 
 st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
 
@@ -24,9 +24,9 @@ else:
 
 with st.sidebar:
     selected = option_menu(
-        "Main Menu",
-        options=titles,
-        icons=icons,
+        "Apps List",
+        options=['Home','Heatmap'],
+        icons=['house','map'],
         menu_icon="cast",
         default_index=default_index,
     )
