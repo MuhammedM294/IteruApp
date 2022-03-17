@@ -1,6 +1,6 @@
 import streamlit as st
 import ee
-import iteru
+from iteru import Map
 
 
 def app():
