@@ -1,7 +1,6 @@
 import streamlit as st
 import ee
 import iteru
-ee.Initialize()
 
 
 def app():
