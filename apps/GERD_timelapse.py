@@ -1,6 +1,4 @@
 import streamlit as st
-import ee
-ee.Initialize()
 
 
 def app():
