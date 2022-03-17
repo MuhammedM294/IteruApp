@@ -3,16 +3,25 @@ import leafmap.foliumap as leafmap
 
 
 def app():
-    st.title("Home")
+    st.title("Iteru")
 
     st.markdown(
         """
-    A [streamlit](https://streamlit.io) app template for geospatial applications based on [streamlit-option-menu](https://github.com/victoryhb/streamlit-option-menu). 
-    To create a direct link to a pre-selected menu, add `?page=<app name>` to the URL, e.g., `?page=upload`.
-    https://share.streamlit.io/giswqs/streamlit-template?page=upload
-
+    A [Google Earth Engine](https://earthengine.google.com/) -Based Interactive Web Application for Continuously
+    Monitoring The [GERD](https://en.wikipedia.org/wiki/Grand_Ethiopian_Renaissance_Dam) Reservoir Waterbody Using 
+    [Sentinel-1 SAR GRD](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD), Google Earth Engine
+    Python API, [iteru](https://github.com/MuhammedM294/Iteru), [geemap](https://geemap.org/).
+    
     """
     )
-    m = leafmap.Map(locate_control=True)
-    m.add_basemap("ROADMAP")
-    m.to_streamlit(height=700)
+
+    row1_col1, row1_col2, row1_col3 = st.columns(3)
+    with row1_col1:
+        st.image("https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb.gif")
+
+    with row1_col2:
+        st.image(
+            "https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb_water.gif")
+    with row1_col3:
+        st.image(
+            "https://github.com/MuhammedM294/common_data/raw/main/gifs/water.gif")
