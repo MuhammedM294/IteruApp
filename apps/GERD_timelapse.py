@@ -1,7 +1,7 @@
-import ee
-ee_initialize()
+from iteru import Map
 import streamlit as st
-from iteru import *
+import ee
+ee.Initialize()
 
 
 def app():
