@@ -1,5 +1,4 @@
 import streamlit as st
-import ee
 from iteru import Map
 
 
