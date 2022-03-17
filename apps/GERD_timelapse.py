@@ -1,5 +1,5 @@
-import geemap
 import streamlit as st
+from iteru import Map
 
 
 def app():
