@@ -17,11 +17,14 @@ def app():
 
     row1_col1, row1_col2, row1_col3 = st.columns(3)
     with row1_col1:
+        st.subheader('RGB')
         st.image("https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb.gif")
 
     with row1_col2:
+        st.subheader('RGB+Water Mask')
         st.image(
             "https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb_water.gif")
     with row1_col3:
+        st.subheader('Water Mask')
         st.image(
             "https://github.com/MuhammedM294/common_data/raw/main/gifs/water.gif")

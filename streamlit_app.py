@@ -1,13 +1,13 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from apps import home, heatmap
+from apps import GERD_timelapse, home
 
-st.set_page_config(page_title="Streamlit Geospatial", layout="wide")
+st.set_page_config(page_title="Iteru", layout="wide")
 
 
 apps = {
     "home": {"title": "Home", "icon": "house"},
-    "heatmap": {"title": "Heatmap", "icon": "map"},
+    "GERD_timelapse": {"title": "GERD Timelapse", "icon": "map"},
 }
 
 titles = [app["title"] for app in apps.values()]
@@ -22,7 +22,7 @@ else:
 
 with st.sidebar:
     selected = option_menu(
-        "Apps List",
+        "Main Menu",
         options=titles,
         icons=icons,
         menu_icon="cast",
