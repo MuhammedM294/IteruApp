@@ -21,7 +21,7 @@ def app():
         st.image("https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb.gif")
 
     with row1_col2:
-        st.subheader('RGB+Water Mask')
+        st.subheader('RGB, Water Mosaic')
         st.image(
             "https://github.com/MuhammedM294/common_data/raw/main/gifs/rgb_water.gif")
     with row1_col3:

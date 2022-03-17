@@ -1,3 +1,5 @@
+import ee
+ee_initialize()
 import streamlit as st
 from iteru import *
 
