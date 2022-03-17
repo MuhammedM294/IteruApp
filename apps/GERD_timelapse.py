@@ -10,7 +10,7 @@ def app():
 
     with row1_col1:
 
-        m = iteru.Map()
+        m = Map()
         m.center = (10.69399656037844, 35.22541966722389)
         m.zoom = 10
         map_layers = m.layers
