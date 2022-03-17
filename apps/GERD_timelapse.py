@@ -1,7 +1,5 @@
-from turtle import position
 from iteru import *
 import streamlit as st
-import ipyleaflet
 
 
 def app():
