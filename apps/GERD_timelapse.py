@@ -1,7 +1,5 @@
-from iteru import Map
+import geemap
 import streamlit as st
-import ee
-ee.Initialize()
 
 
 def app():
@@ -11,7 +9,7 @@ def app():
 
     with row1_col1:
 
-        m = Map()
+        m = geemap.Map()
         m.center = (10.69399656037844, 35.22541966722389)
         m.zoom = 10
         map_layers = m.layers
@@ -20,6 +18,6 @@ def app():
 
     with row1_col2:
         with st.expander("Customize timelapse"):
-            st.write('test')
+            st.write('test test test')
 
             pass
