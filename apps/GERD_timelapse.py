@@ -1,7 +1,9 @@
 import streamlit as st
-from iteru import Map
+from iteru import Map, GERD_SAR_timelaspe
+import base64
 
 
+@st.cache
 def app():
 
     st.title("Create Sentinel-1 SAR GRD Timelapse for GERD")
@@ -18,6 +20,17 @@ def app():
 
     with row1_col2:
         with st.expander("Customize timelapse"):
-            st.write('test test test')
 
-            pass
+            with st.form('TEST'):
+                submitted = st.form_submit_button("Submit")
+
+                if submitted:
+                    out_gif = GERD_SAR_timelaspe()
+                    file_ = open(out_gif, "rb")
+                    contents = file_.read()
+                    data_url = base64.b64encode(contents).decode("utf-8")
+                    file_.close()
+                    st.markdown(
+                        f'<img src="data:image/gif;base64,{data_url}>',
+                        unsafe_allow_html=True,
+                    )
