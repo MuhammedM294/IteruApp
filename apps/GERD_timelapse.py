@@ -2,7 +2,7 @@ from geemap import sentinel2_timelapse
 import streamlit as st
 import base64
 from geemap import temp_file_path
-from iteru import GERD_aoi
+from iteru import GERD_aoi, GERD_SAR_timelaspe
 
 
 def app():
@@ -15,8 +15,7 @@ def app():
             submitted = st.form_submit_button("Submit")
 
             if submitted:
-                out_gif = temp_file_path('.gif')
-                out_gif = sentinel2_timelapse(GERD_aoi, out_gif=out_gif)
+                out_gif = GERD_SAR_timelaspe(GERD_aoi)
                 file_ = open(out_gif, "rb")
                 contents = file_.read()
                 data_url = base64.b64encode(contents).decode("utf-8")
