@@ -1,13 +1,13 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from apps import GERD_timelapse, home
+from apps import create_timelapse, home
 
 st.set_page_config(page_title="Iteru", layout="wide")
 
 
 apps = {
     "home": {"title": "Home", "icon": "house"},
-    "GERD_timelapse": {"title": "GERD Timelapse", "icon": "map"},
+    "create_timelapse": {"title": "Create Timelapse", "icon": "map"},
 }
 
 titles = [app["title"] for app in apps.values()]
