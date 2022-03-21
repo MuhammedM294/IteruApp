@@ -1,8 +1,9 @@
 import datetime
 import streamlit as st
 import base64
-from iteru import GERD_aoi, GERD_SAR_timelaspe, Map
-import time
+from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, GERD_water_stats, show_plot
+
+st.cache()
 
 
 def app():
@@ -26,21 +27,21 @@ def app():
             valid_start_date = datetime.date(2020, 1, 1)
             valid_end_date = datetime.date.today()
             start_date = st.date_input(
-                'Select Start Date', valid_start_date)
+                'Select Start Date', valid_start_date, key='start_date')
 
             end_date = st.date_input(
-                'Select End Date', valid_end_date)
+                'Select End Date', valid_end_date, key='end_date')
 
             temp_freq = st.selectbox('Set Temporal Frequency',
                                      ('Native Temporal Resolution (12 days)',
                                       'Monthly',
-                                      'Quarterly'))
+                                      'Quarterly'), key='temp_freq')
 
             temp_freq_dict = {'Native Temporal Resolution (12 days)': None,
                               'Monthly': 'monthly',
                               'Quarterly': 'quarterly'}
 
-            vis_method = st.selectbox('Selecet Visualiation Method',
+            vis_method = st.selectbox('Select Visualiation Method',
                                       ('RGB',
                                        'RGB + Water Mosaic',
                                        'Single Band (Water Mask)',
@@ -48,10 +49,12 @@ def app():
                                        'Single Band VV (B&W)',
                                        'Single Band VH (W&B)',
                                        'Single Band VV (W&B)',
-                                       ))
+                                       ),
+                                      key='vis_method'
+                                      )
 
             vis_methods = {'RGB': 'rgb',
-                           'Water Mask': 'water_mask_only',
+                           'Single Band (Water Mask)': 'water_mask_only',
                            'RGB + Water Mosaic': 'rgb_water_mosaic',
                            'Single Band VH (B&W)': 'single_band_VH',
                            'Single Band VV (B&W)': 'single_band_VV',
@@ -65,19 +68,37 @@ def app():
                 copywrite_font_color = 'black'
 
             framepersecond = st.slider(
-                'Frame Per Second (Animation Speed)', max_value=5, min_value=1, value=3)
+                'Frame Per Second (Animation Speed)',
+                max_value=5,
+                min_value=1,
+                value=3,
+                key='framepersecond'
+            )
 
             date_font_size = st.slider(
-                'Date Label Font Size', max_value=50, min_value=10, value=25)
+                'Date Label Font Size',
+                max_value=50,
+                min_value=10,
+                value=25,
+                key='date_font_size'
+
+            )
 
             date_font_color = st.color_picker(
-                'Date Label Font Color', '#000000')
+                'Date Label Font Color', '#000000',
+                key='date_font_color')
 
             dimension = st.slider(
-                'GIF Dimensions', max_value=1080, min_value=720, value=900)
+                'GIF Dimensions',
+                max_value=1080,
+                min_value=720,
+                value=900,
+                key=' dimension'
+            )
 
-            submitted = st.form_submit_button("Submit")
-            if submitted:
+            timelapse_button = st.form_submit_button("Create Timelapse")
+
+            if timelapse_button:
                 try:
                     out_gif = GERD_SAR_timelaspe(GERD_aoi,
                                                  startYear=start_date.year,
@@ -134,5 +155,37 @@ def app():
                             )
                             with row1_col2:
                                 st.success('Done!')
+
                     except Exception:
                         st.error('Nope! Something went wrong!')
+
+            st.subheader('Compute Water Statistics')
+            water_area = st.checkbox('Water Surface Area',
+                                     key='water_area')
+            water_level = st.checkbox('Water Maximum Level',
+                                      key='water_level')
+            water_volume = st.checkbox('Water Volume',
+                                       key='water_volume')
+            statistics_button = st.form_submit_button("Compute Statistics")
+
+            if statistics_button:
+
+                water_stats = GERD_water_stats(GERD_aoi,
+                                               startYear=st.session_state.start_date.year,
+                                               startMonth=st.session_state.start_date.month,
+                                               startDay=st.session_state.start_date.day,
+                                               endYear=st.session_state.end_date.year,
+                                               endMonth=st.session_state.end_date.month,
+                                               endDay=st.session_state.end_date.day,
+                                               temp_freq=temp_freq_dict[st.session_state.temp_freq],
+                                               water_area=st.session_state.water_area,
+                                               water_level=st.session_state.water_level,
+                                               water_volume=st.session_state.water_volume,
+                                               )
+
+                if water_stats:
+
+                    with row1_col1:
+
+                        st.dataframe(water_stats)
+                        

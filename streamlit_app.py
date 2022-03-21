@@ -7,7 +7,7 @@ st.set_page_config(page_title="Iteru", layout="wide")
 
 apps = {
     "home": {"title": "Home", "icon": "house"},
-    "create_timelapse": {"title": "Create Timelapse", "icon": "map"},
+    "create_timelapse": {"title": "GERD Timelapse & Statistics", "icon": "map"},
 }
 
 titles = [app["title"] for app in apps.values()]
