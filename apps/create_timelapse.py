@@ -1,7 +1,7 @@
 import datetime
 import streamlit as st
 import base64
-from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, dates_params
+from iteru import GERD_aoi, GERD_SAR_timelaspe, Map
 import time
 
 
@@ -20,7 +20,7 @@ def app():
 
     with row1_col2:
 
-        with st.form('timelapse',clear_on_submit=True):
+        with st.form('timelapse', clear_on_submit=True):
 
             st.subheader('Customize Timelaspe')
             valid_start_date = datetime.date(2020, 1, 1)
