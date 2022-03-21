@@ -20,7 +20,7 @@ def app():
 
     with row1_col2:
 
-        with st.form('timelapse', clear_on_submit=True):
+        with st.form('timelapse'):
 
             st.subheader('Customize Timelaspe')
             valid_start_date = datetime.date(2020, 1, 1)
@@ -44,14 +44,20 @@ def app():
                                       ('RGB',
                                        'RGB + Water Mosaic',
                                        'Single Band (Water Mask)',
-                                       'Single Band VH',
-                                       'Single Band VV'))
+                                       'Single Band VH (B&W)',
+                                       'Single Band VV (B&W)',
+                                       'Single Band VH (W&B)',
+                                       'Single Band VV (W&B)',
+                                       ))
 
             vis_methods = {'RGB': 'rgb',
                            'Water Mask': 'water_mask_only',
                            'RGB + Water Mosaic': 'rgb_water_mosaic',
-                           'Single Band VH': 'single_band_VH',
-                           'Single Band VV': 'single_band_VV'}
+                           'Single Band VH (B&W)': 'single_band_VH',
+                           'Single Band VV (B&W)': 'single_band_VV',
+                           'Single Band VH (W&B)': 'single_band_VH_R',
+                           'Single Band VV (W&B)': 'single_band_VV_R'
+                           }
 
             if vis_method == 'Water Mask':
                 copywrite_font_color = 'white'
