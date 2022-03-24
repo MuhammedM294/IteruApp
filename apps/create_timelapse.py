@@ -1,11 +1,15 @@
 import datetime
+from turtle import position, width
+from matplotlib.widgets import Widget
 import streamlit as st
 import base64
-from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, GERD_water_stats, show_plot
+from ipyleaflet import WidgetControl
+from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, GERD_water_stats
+from ipywidgets import HTML
+
+
 
 st.cache()
-
-
 def app():
 
     st.header('Create Timelapse')
@@ -13,11 +17,26 @@ def app():
         'This app for creating the GERD timelapses from 2020-01-01 so far.')
 
     row1_col1, row1_col2 = st.columns([2, 1])
-
+    
     with row1_col1:
-        m = Map(zoom=10, center=(10.65, 35.2))
+        placeholder = st.empty()
+        m = Map(zoom=10, center=(10.75, 35.2))
         m.remove_layer(m.layers[1])
-        m.to_streamlit()
+        m.addLayer(GERD_aoi, {'color': 'red',
+                              }, 'GERD-AOI')
+        m.layers[1].opacity = 0.1
+        m.to_streamlit(height=650, width=800, responsive=True)
+        
+        def zoom_to_GERD():
+            m.zoom = 10
+            m.center = (10.75, 35.2)
+        zoom = st.button('Zoom to The GERD', on_click=zoom_to_GERD)
+        
+        
+        
+        
+        
+        
 
     with row1_col2:
 
@@ -95,8 +114,9 @@ def app():
                 value=900,
                 key=' dimension'
             )
-
+            
             timelapse_button = st.form_submit_button("Create Timelapse")
+
 
             if timelapse_button:
                 try:
@@ -141,20 +161,27 @@ def app():
                 else:
 
                     try:
+                
+                            file_ = open(out_gif, "rb")
+                            contents = file_.read()
+                            data_url = base64.b64encode(contents).decode("utf-8")
+                            file_.close()
+                            
+                            m.image_overlay(url=out_gif,
+                                             bounds=((10.522199, 35.008243), (11.266588, 35.387092)),
+                                             name = 'GERD_Timelapse')   
+                            
+                            row1_col1.empty()
+                                
 
-                        file_ = open(out_gif, "rb")
-                        contents = file_.read()
-                        data_url = base64.b64encode(contents).decode("utf-8")
-                        file_.close()
+                            with row1_col1:
 
-                        with row1_col1:
-
-                            st.markdown(
-                                f'<img src="data:image/gif;base64,{data_url}" alt="GERD gif">',
-                                unsafe_allow_html=True,
-                            )
-                            with row1_col2:
-                                st.success('Done!')
+                                st.markdown(
+                                    f'<img src="data:image/gif;base64,{data_url}" alt="GERD gif">',
+                                    unsafe_allow_html=True,
+                                )
+                                with row1_col2:
+                                    st.success('Done!')
 
                     except Exception:
                         st.error('Nope! Something went wrong!')
@@ -187,5 +214,5 @@ def app():
 
                     with row1_col1:
 
-                        st.dataframe(water_stats)
+                        st.table(water_stats)
                         
