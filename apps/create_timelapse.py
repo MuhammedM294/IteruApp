@@ -1,9 +1,8 @@
 import datetime
-from turtle import position, width
 from matplotlib.widgets import Widget
 import streamlit as st
 import base64
-from ipyleaflet import WidgetControl
+from ipyleaflet import FullScreenControl
 from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, GERD_water_stats
 from ipywidgets import HTML
 
@@ -25,8 +24,8 @@ def app():
         m.addLayer(GERD_aoi, {'color': 'red',
                               }, 'GERD-AOI')
         m.layers[1].opacity = 0.1
-        m.to_streamlit(height=650, width=800, responsive=True)
-        
+        x = m.to_streamlit(height=650, width=800, responsive=True)
+       
         def zoom_to_GERD():
             m.zoom = 10
             m.center = (10.75, 35.2)
@@ -119,6 +118,8 @@ def app():
 
 
             if timelapse_button:
+                del x
+
                 try:
                     out_gif = GERD_SAR_timelaspe(GERD_aoi,
                                                  startYear=start_date.year,
