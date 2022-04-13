@@ -10,7 +10,7 @@ def app():
     A [Google Earth Engine](https://earthengine.google.com/) -Based Interactive Web Application for Continuously
     Monitoring The [GERD](https://en.wikipedia.org/wiki/Grand_Ethiopian_Renaissance_Dam) Reservoir Waterbody Using 
     [Sentinel-1 SAR GRD](https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S1_GRD), Google Earth Engine
-    Python API, [iteru](https://github.com/MuhammedM294/Iteru), [geemap](https://geemap.org/).
+    Python API, [Iteru](https://github.com/MuhammedM294/Iteru), [Ipyleaflet](https://ipyleaflet.readthedocs.io/en/latest/).
     
     """
     )
