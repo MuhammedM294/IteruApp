@@ -1,9 +1,7 @@
-# streamlit-template
+# streamlit-IteruApp
+A Google Earth Engine- based interactive web application for continuous monitoring of the [GERD](https://en.wikipedia.org/wiki/Grand_Ethiopian_Renaissance_Dam) reservoir waterbody.
 
-A streamlit app template for geospatial applications based on [streamlit-option-menu](https://github.com/victoryhb/streamlit-option-menu).
+App URL: <https://share.streamlit.io/muhammedm294/iteruapp>
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/giswqs/streamlit-template/master?urlpath=proxy/8501/)
 
-App URL: <https://share.streamlit.io/giswqs/streamlit-template>
-
-![](https://i.imgur.com/xd64mCi.png)
+![](https://github.com/MuhammedM294/common_data/blob/e2cbcd6d40a64025a5856222979f05799c6e45f5/gifs/App%20Homepage.png)
