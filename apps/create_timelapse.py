@@ -118,7 +118,7 @@ def app():
 
 
             if timelapse_button:
-                del x
+                
 
                 try:
                     out_gif = GERD_SAR_timelaspe(GERD_aoi,
@@ -187,33 +187,6 @@ def app():
                     except Exception:
                         st.error('Nope! Something went wrong!')
 
-            st.subheader('Compute Water Statistics')
-            water_area = st.checkbox('Water Surface Area',
-                                     key='water_area')
-            water_level = st.checkbox('Water Maximum Level',
-                                      key='water_level')
-            water_volume = st.checkbox('Water Volume',
-                                       key='water_volume')
-            statistics_button = st.form_submit_button("Compute Statistics")
+           
 
-            if statistics_button:
-
-                water_stats = GERD_water_stats(GERD_aoi,
-                                               startYear=st.session_state.start_date.year,
-                                               startMonth=st.session_state.start_date.month,
-                                               startDay=st.session_state.start_date.day,
-                                               endYear=st.session_state.end_date.year,
-                                               endMonth=st.session_state.end_date.month,
-                                               endDay=st.session_state.end_date.day,
-                                               temp_freq=temp_freq_dict[st.session_state.temp_freq],
-                                               water_area=st.session_state.water_area,
-                                               water_level=st.session_state.water_level,
-                                               water_volume=st.session_state.water_volume,
-                                               )
-
-                if water_stats:
-
-                    with row1_col1:
-
-                        st.table(water_stats)
                         
