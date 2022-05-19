@@ -18,14 +18,14 @@ def app():
 
     row1_col1, row1_col2 = st.columns([2, 1])
 
-    with row1_col1:
+    # with row1_col1:
 
-        m = Map(zoom=10, center=(10.75, 35.2))
-        m.remove_layer(m.layers[1])
-        m.addLayer(GERD_aoi_dam, {'color': 'red',
-                                  }, 'GERD-AOI')
-        m.layers[1].opacity = 0.1
-        m.to_streamlit(height=650, width=800, responsive=True)
+    #     m = Map(zoom=10, center=(10.75, 35.2))
+    #     m.remove_layer(m.layers[1])
+    #     m.addLayer(GERD_aoi_dam, {'color': 'red',
+    #                               }, 'GERD-AOI')
+    #     m.layers[1].opacity = 0.1
+    #     m.to_streamlit(height=650, width=800, responsive=True)
 
     with row1_col2:
 
@@ -129,6 +129,9 @@ def app():
                         st.write(round(stats['Volume'], 3))
 
                     with row1_col1:
+
+                        m = Map(zoom=10, center=(10.75, 35.2))
+                        m.remove_layer(m.layers[1])
 
                         m.add_ee_layer(
                             layers['SAR_VV'], {'min': -30, 'max': 5, 'bands': ['VV_Filtered']}, 'SAR_Image')
