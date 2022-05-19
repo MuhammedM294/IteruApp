@@ -9,7 +9,7 @@ from ipywidgets import HTML
 
 
 
-
+@st.cache
 def app():
 
     st.header('Create Timelapse')
