@@ -17,31 +17,34 @@ def app():
     row1_col1, row1_col2 = st.columns([2, 1])
 
     with row1_col1:
-
-        m = Map(zoom=10, center=(10.75, 35.2))
-        m.remove_layer(m.layers[1])
-        m.addLayer(GERD_aoi, {'color': 'red',
-                              }, 'GERD AOI(Zoom 11)')
-        m.addLayer(aois['zoom_14_1'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 1)')
-        m.addLayer(aois['zoom_14_2'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 2)')
-        m.addLayer(aois['zoom_14_3'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 3)')
-        m.addLayer(aois['zoom_14_4'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 4)')
-        m.addLayer(aois['zoom_14_5'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 5)')
-        m.addLayer(aois['zoom_14_7'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 6)')
-        m.addLayer(aois['zoom_14_8'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 7)')
-        m.addLayer(aois['zoom_14_6'], {'color': 'blue',
-                                       }, 'GERD AOI(Zoom 14 Area 8)')
-        m.layers[1].opacity = 0.2
-        for i in range(2, 10):
-            m.layers[i].opacity = 0.2
-        m.to_streamlit(height=650, width=800, responsive=True)
+        try:
+            
+            m = Map(zoom=10, center=(10.75, 35.2))
+            m.remove_layer(m.layers[1])
+            m.addLayer(GERD_aoi, {'color': 'red',
+                                }, 'GERD AOI(Zoom 11)')
+            m.addLayer(aois['zoom_14_1'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 1)')
+            m.addLayer(aois['zoom_14_2'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 2)')
+            m.addLayer(aois['zoom_14_3'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 3)')
+            m.addLayer(aois['zoom_14_4'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 4)')
+            m.addLayer(aois['zoom_14_5'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 5)')
+            m.addLayer(aois['zoom_14_7'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 6)')
+            m.addLayer(aois['zoom_14_8'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 7)')
+            m.addLayer(aois['zoom_14_6'], {'color': 'blue',
+                                        }, 'GERD AOI(Zoom 14 Area 8)')
+            m.layers[1].opacity = 0.2
+            for i in range(2, 10):
+                m.layers[i].opacity = 0.2
+            m.to_streamlit(height=650, width=800, responsive=True)
+        except:
+            st.subheader('Please, reload the page')
 
     with row1_col2:
 
