@@ -12,7 +12,7 @@ from statistics import mode
 
 def app():
 
-    st.header('Compute Waterbody Statistcis')
+    st.header('Compute waterbody statistcis')
     st.markdown(
         'This app is for computing the surface water area and the waterbody volume of the GERD reservoir.')
 
@@ -38,7 +38,7 @@ def app():
                 'Select Start Date (NOT before 1 July 2020)', valid_start_date, key='start_date')
 
             end_date = st.date_input(
-                'Select End Date', valid_end_date, key='end_date')
+                'Select end date', valid_end_date, key='end_date')
             st.subheader('2. Select an image')
             show_images = st.form_submit_button("Show available images")
 
@@ -81,13 +81,13 @@ def app():
                     if dates_dict not in st.session_state:
                         st.session_state.dates_dict = dates_dict
 
-                    dates = st.radio('The Available Images',
+                    dates = st.radio('The available images',
                                      list(dates_dict.keys()),
                                      key='dates'
                                      )
 
-            st.subheader('3. Compute Statistcis')
-            compute_stats = st.form_submit_button("Compute Statistics")
+            st.subheader('3. Compute statistcis')
+            compute_stats = st.form_submit_button("Compute")
             if compute_stats:
                 try:
 
@@ -99,10 +99,10 @@ def app():
 
                     st.subheader('4. Results')
 
-                    st.markdown('1. Image Acquisition Date')
+                    st.markdown('1. Image acquisition date')
                     st.write(st.session_state.dates)
 
-                    st.markdown('2. Surface Water Area (km²)')
+                    st.markdown('2. Surface water area (km²)')
                     st.write(round(stats['Area'], 3))
 
                     predicted_volume = poly_expected_value(
@@ -111,21 +111,21 @@ def app():
                     if abs(predicted_volume-stats['Volume']) > 2:
 
                         st.markdown(
-                            '3. Waterbody Predicted Volume (Billion m³)')
+                            '3. Waterbody predicted volume (billion m³)')
                         st.caption(
-                            '(predicted based on area change)')
+                            '(Predicted based on area change)')
                         st.write(round(predicted_volume, 3))
 
                     else:
                         st.markdown(
-                            '3. Waterbody Predicted Volume (Billion m³)')
+                            '3. Waterbody predicted volume (billion m³)')
                         st.caption(
-                            '(predicted based on area change)')
+                            '(Predicted based on area change)')
                         st.write(round(predicted_volume, 3))
 
                         st.markdown(
-                            '4. Waterbody Observed Volume (Billion m³)')
-                        st.caption('(observed from the image)')
+                            '4. Waterbody observed volume (billion m³)')
+                        st.caption('(Observed from the image)')
                         st.write(round(stats['Volume'], 3))
 
                     with row1_col1:

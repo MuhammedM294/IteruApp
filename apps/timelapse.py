@@ -43,7 +43,7 @@ def app():
         m.layers[1].opacity = 0.2
         for i in range(2,10):
             m.layers[i].opacity = 0.2
-        x = m.to_streamlit(height=650, width=800, responsive=True)
+        m.to_streamlit(height=650, width=800, responsive=True)
           
         
 
@@ -64,28 +64,28 @@ def app():
                            'Area 7(Zoom Level 14)':aois['zoom_14_8'],
                            'Area 8(Zoom Level 14)': aois['zoom_14_6'],
                            }
-            study_area = st.radio('1. Select Study Area',
+            study_area = st.radio('1. Select study area',
                                   list(study_areas.keys()),
                                   key = 'study_area')
             if 'study_area' not in st.session_state:
                 st.session_state.study_area = study_area
                 
             start_date = st.date_input(
-                '2. Select Start Date (NOT before 1 July 2020)', valid_start_date, key='start_date')
+                '2. Select start date (NOT before 1 July 2020)', valid_start_date, key='start_date')
 
             end_date = st.date_input(
-                '3. Select End Date', valid_end_date, key='end_date')
+                '3. Select end date', valid_end_date, key='end_date')
 
-            temp_freq = st.selectbox('4. Set Temporal Frequency',
-                                     ('Native Temporal Resolution (12 days)',
+            temp_freq = st.selectbox('4. Set temporal frequency',
+                                     ('Native temporal resolution (12 days)',
                                       'Monthly',
                                       'Quarterly'), key='temp_freq')
 
-            temp_freq_dict = {'Native Temporal Resolution (12 days)': None,
+            temp_freq_dict = {'Native temporal resolution (12 days)': None,
                               'Monthly': 'monthly',
                               'Quarterly': 'quarterly'}
 
-            vis_method = st.selectbox('5. Select Visualiation Method',
+            vis_method = st.selectbox('5. Select visualiation method',
                                       ('RGB',
                                        'Single Band VV',
                                        'Single Band VH',
@@ -104,7 +104,7 @@ def app():
                 copywrite_font_color = 'black'
 
             framepersecond = st.slider(
-                '6. Frame Per Second (Animation Speed)',
+                '6. Frame per second (animation speed)',
                 max_value=5,
                 min_value=1,
                 value=3,
@@ -112,7 +112,7 @@ def app():
             )
 
             date_font_size = st.slider(
-                '7. Font Size(Date Label)',
+                '7. Font size(date label)',
                 max_value=50,
                 min_value=10,
                 value=25,
@@ -121,18 +121,18 @@ def app():
             )
 
             date_font_color = st.color_picker(
-                '8. Font Color(Date Label)', '#000000',
+                '8. Font color(date label)', '#000000',
                 key='date_font_color')
 
             dimension = st.slider(
-                '9. GIF Dimensions',
+                '9. GIF dimensions',
                 max_value=1080,
                 min_value=720,
                 value=900,
                 key=' dimension'
             )
             
-            timelapse_button = st.form_submit_button("Create Timelapse")
+            timelapse_button = st.form_submit_button("Submit")
 
 
             if timelapse_button:
@@ -183,7 +183,7 @@ def app():
                                                  )
                     if out_gif is None:
                             st.error(
-                                'Too much data requested: reduce the gif dimensions or timespan')
+                                'Many images requested; reduce the gif dimensions or timespan')
                             st.stop()
                 except Exception as e:
                     print(e)
