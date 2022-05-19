@@ -10,7 +10,6 @@ import ee
 from statistics import mode
 
 
-@st.cache
 def app():
 
     st.header('Compute Waterbody Statistcis')
