@@ -16,16 +16,16 @@ def app():
     row1_col1, row1_col2 = st.columns(2)
     with row1_col1:
         st.subheader('Single Band VV')
-        st.image("https://github.com/MuhammedM294/common_data/raw/main/gifs/VV.gif")
+        st.image("https://github.com/MuhammedM294/data/raw/main/gifs/VV.gif")
 
         st.subheader('RGB(Area 6)')
         st.image(
-            "https://github.com/MuhammedM294/common_data/raw/main/gifs/RGB_AREA6.gif")
+            "https://github.com/MuhammedM294/data/raw/main/gifs/RGB_AREA6.gif")
 
     with row1_col2:
         st.subheader('RGB')
         st.image(
-            "https://github.com/MuhammedM294/common_data/raw/main/gifs/RGB.gif")
+            "https://github.com/MuhammedM294/data/raw/main/gifs/RGB.gif")
         st.subheader('RGB(Area 6)')
         st.image(
-            "https://github.com/MuhammedM294/common_data/raw/main/gifs/RGB_AREA62.gif")
+            "https://github.com/MuhammedM294/data/raw/main/gifs/RGB_AREA62.gif")
