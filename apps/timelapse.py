@@ -6,7 +6,7 @@ import base64
 from ipyleaflet import FullScreenControl
 from iteru import *
 from ipywidgets import HTML
-from sympy import zoo
+
 
 
 
