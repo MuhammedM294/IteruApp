@@ -10,12 +10,11 @@ from ipywidgets import HTML
 
 
 
-st.cache()
 def app():
 
     st.header('Create Timelapse')
     st.markdown(
-        'This app for creating the GERD timelapses from 2020-01-01 so far.')
+        'This app is for creating the GERD time-lapses from 2020-07-01 so far.')
 
     row1_col1, row1_col2 = st.columns([2, 1])
     
@@ -138,7 +137,28 @@ def app():
 
             if timelapse_button:
                 
+                if 'start_date' not in st.session_state:
+                    st.session_state.start_date = start_date
+                if 'end_date' not in st.session_state:
+                    st.session_state.end_date = end_date
 
+                if st.session_state.start_date < valid_start_date:
+                        st.error(
+                            f'The start date should not be before {valid_start_date}')
+                        st.stop()
+                elif st.session_state.end_date > valid_end_date:
+                        st.error(
+                            f'The end date should not be after {valid_end_date}')
+                        st.stop()
+                elif (st.session_state.end_date - st.session_state.start_date).days < 0:
+                        st.error(
+                            'The start date should be before the end date')
+                        st.stop()
+                elif 0 <= (st.session_state.end_date - st.session_state.start_date).days < 30:
+                        st.error(
+                            'It should be at least one month between the start and end dates')
+                        st.stop()
+                        
                 try:
                     if study_areas[st.session_state.study_area] == GERD_aoi:
                         zoom_level = "Zoom Level: 11"
@@ -162,28 +182,11 @@ def app():
                                                  zoom_level=zoom_level
                                                  )
                     if out_gif is None:
-                        if start_date < valid_start_date:
                             st.error(
-                                f'The start date should not be before {valid_start_date}')
-                            st.stop()
-                        elif end_date > valid_end_date:
-                            st.error(
-                                f'The end date should not be after {valid_end_date}')
-                            st.stop()
-                        elif (end_date - start_date).days < 0:
-                            st.error(
-                                'The start date should be before the end date')
-                            st.stop()
-                        elif 0 <= (end_date - start_date).days < 30:
-                            st.error(
-                                'It should be at least one month between the start date and end date')
-                            st.stop()
-                        else:
-                            st.error(
-                                'Too much data requested: reduce the gif dimensions or the timespan')
+                                'Too much data requested: reduce the gif dimensions or timespan')
                             st.stop()
                 except Exception as e:
-                    st.exception(e)
+                    print(e)
                 else:
 
                     try:
@@ -207,7 +210,7 @@ def app():
                                     unsafe_allow_html=True,
                                 )
                                 with row1_col2:
-                                    st.success('Done!')
+                                    st.success('Done!☺')
 
                     except Exception:
                         st.error('Nope! Something went wrong!')

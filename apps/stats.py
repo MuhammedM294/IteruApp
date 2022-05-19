@@ -9,14 +9,12 @@ from ipywidgets import HTML
 import ee
 from statistics import mode
 
-st.cache()
-
 
 def app():
 
     st.header('Compute Waterbody Statistcis')
     st.markdown(
-        'This app for computing the surface water area, level, and the waterbody volume of the GERD reservoir.')
+        'This app is for computing the surface water area and the waterbody volume of the GERD reservoir.')
 
     row1_col1, row1_col2 = st.columns([2, 1])
 
@@ -33,7 +31,7 @@ def app():
 
         with st.form('image_dates'):
 
-            st.subheader('1. Select a time frame (at least a month)')
+            st.subheader('1. Select a time span (at least a month)')
             valid_start_date = datetime.date(2020, 7, 1)
             valid_end_date = datetime.date.today()
             start_date = st.date_input(
@@ -56,14 +54,14 @@ def app():
                         st.stop()
                     elif (end_date - start_date).days < 0:
                         st.error(
-                            'The start date should be prior the end date')
+                            'The start date should be before the end date')
                         st.stop()
                     elif 0 <= (end_date - start_date).days < 30:
                         st.error(
-                            'It should be at least one month between the start date and the end date')
+                            'It should be at least one month between the start and end dates')
                         st.stop()
                 except:
-                    st.error('Nope! Something went wrong!')
+                    pass
                 else:
 
                     user_start_date = f'{st.session_state.start_date.year}-{st.session_state.start_date.month}-{st.session_state.start_date.day}'
@@ -101,27 +99,34 @@ def app():
 
                     st.subheader('4. Results')
 
-                    st.markdown('1.Image Acquisition Date')
+                    st.markdown('1. Image Acquisition Date')
                     st.write(st.session_state.dates)
 
-                    st.markdown('2.Surface Water Area (km²)')
+                    st.markdown('2. Surface Water Area (km²)')
                     st.write(round(stats['Area'], 3))
-
-                    st.markdown('3.Surface Water Level (m)')
-                    st.write(round(stats['Level'], 1))
 
                     predicted_volume = poly_expected_value(
                         obvserved_area_54, observed_volume_54, stats['Area'])
 
-                    st.markdown('4.Waterbody Predicted Volume (Billion m³)')
-                    st.write(
-                        'This volume is predicted based on the change in area.')
-                    st.write(round(predicted_volume, 3))
+                    if abs(predicted_volume-stats['Volume']) > 2:
 
-                    st.markdown('5.Waterbody Observed Volume (Billion m³)')
-                    st.write('This volume is observed from the image.')
-                    st.write('It might be NOT reliable')
-                    st.write(round(stats['Volume'], 3))
+                        st.markdown(
+                            '3. Waterbody Predicted Volume (Billion m³)')
+                        st.caption(
+                            '(predicted based on area change)')
+                        st.write(round(predicted_volume, 3))
+
+                    else:
+                        st.markdown(
+                            '3. Waterbody Predicted Volume (Billion m³)')
+                        st.caption(
+                            '(predicted based on area change)')
+                        st.write(round(predicted_volume, 3))
+
+                        st.markdown(
+                            '4. Waterbody Observed Volume (Billion m³)')
+                        st.caption('(observed from the image)')
+                        st.write(round(stats['Volume'], 3))
 
                     with row1_col1:
 
@@ -133,7 +138,7 @@ def app():
                                                   }, 'GERD-AOI')
                         m.to_streamlit(height=650, width=800, responsive=True)
                     with row1_col2:
-                        st.success('Done!')
+                        st.success('Done!☺')
 
                 except:
                     st.error(
