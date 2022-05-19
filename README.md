@@ -4,4 +4,4 @@ A Google Earth Engine-Based Interactive Web Application for Continuously Monitor
 App URL: <https://share.streamlit.io/muhammedm294/iteruapp>
 
 
-![](https://github.com/MuhammedM294/data/blob/d02cf385dc26c31d0ba2a8e608723c93efc4352e/img/S2_2022_05_09.png)
+![](https://github.com/MuhammedM294/data/blob/d02cf385dc26c31d0ba2a8e608723c93efc4352e/img/home.png)
