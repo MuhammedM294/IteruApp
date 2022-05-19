@@ -1,10 +1,12 @@
 import datetime
 from matplotlib.widgets import Widget
+from requests import session
 import streamlit as st
 import base64
 from ipyleaflet import FullScreenControl
-from iteru import GERD_aoi, GERD_SAR_timelaspe, Map, GERD_water_stats
+from iteru import *
 from ipywidgets import HTML
+from sympy import zoo
 
 
 
@@ -18,23 +20,32 @@ def app():
     row1_col1, row1_col2 = st.columns([2, 1])
     
     with row1_col1:
-        placeholder = st.empty()
+        
         m = Map(zoom=10, center=(10.75, 35.2))
         m.remove_layer(m.layers[1])
         m.addLayer(GERD_aoi, {'color': 'red',
-                              }, 'GERD-AOI')
-        m.layers[1].opacity = 0.1
+                              }, 'GERD AOI(Zoom 11)')
+        m.addLayer(aois['zoom_14_1'], {'color': 'blue',
+                              }, 'GERD AOI(Zoom 14 Area 1)')
+        m.addLayer(aois['zoom_14_2'], {'color': 'blue',
+                                       }, 'GERD AOI(Zoom 14 Area 2)')
+        m.addLayer(aois['zoom_14_3'], {'color': 'blue',
+                              }, 'GERD AOI(Zoom 14 Area 3)')
+        m.addLayer(aois['zoom_14_4'], {'color': 'blue',
+                                       }, 'GERD AOI(Zoom 14 Area 4)')
+        m.addLayer(aois['zoom_14_5'], {'color': 'blue',
+                                       }, 'GERD AOI(Zoom 14 Area 5)')
+        m.addLayer(aois['zoom_14_7'], {'color': 'blue',
+                              }, 'GERD AOI(Zoom 14 Area 6)')
+        m.addLayer(aois['zoom_14_8'], {'color': 'blue',
+                              }, 'GERD AOI(Zoom 14 Area 7)')
+        m.addLayer(aois['zoom_14_6'], {'color': 'blue',
+                                       }, 'GERD AOI(Zoom 14 Area 8)')
+        m.layers[1].opacity = 0.2
+        for i in range(2,10):
+            m.layers[i].opacity = 0.2
         x = m.to_streamlit(height=650, width=800, responsive=True)
-       
-        def zoom_to_GERD():
-            m.zoom = 10
-            m.center = (10.75, 35.2)
-        zoom = st.button('Zoom to The GERD', on_click=zoom_to_GERD)
-        
-        
-        
-        
-        
+          
         
 
     with row1_col2:
@@ -42,15 +53,31 @@ def app():
         with st.form('timelapse'):
 
             st.subheader('Customize Timelaspe')
-            valid_start_date = datetime.date(2020, 1, 1)
+            valid_start_date = datetime.date(2020, 7, 1)
             valid_end_date = datetime.date.today()
+            study_areas = {'The Whole Reservoir(Zoom Level 11)':GERD_aoi,
+                           'Area 1(Zoom Level 14)':aois['zoom_14_1'],
+                           'Area 2(Zoom Level  14)':aois['zoom_14_2'],
+                           'Area 3(Zoom Level 14)':aois['zoom_14_3'],
+                           'Area 4(Zoom Level 14)':aois['zoom_14_4'],
+                           'Area 5(Zoom Level 14)':aois['zoom_14_5'],
+                           'Area 6(Zoom Level 14)':aois['zoom_14_7'],
+                           'Area 7(Zoom Level 14)':aois['zoom_14_8'],
+                           'Area 8(Zoom Level 14)': aois['zoom_14_6'],
+                           }
+            study_area = st.radio('1. Select Study Area',
+                                  list(study_areas.keys()),
+                                  key = 'study_area')
+            if 'study_area' not in st.session_state:
+                st.session_state.study_area = study_area
+                
             start_date = st.date_input(
-                'Select Start Date', valid_start_date, key='start_date')
+                '2. Select Start Date (NOT before 1 July 2020)', valid_start_date, key='start_date')
 
             end_date = st.date_input(
-                'Select End Date', valid_end_date, key='end_date')
+                '3. Select End Date', valid_end_date, key='end_date')
 
-            temp_freq = st.selectbox('Set Temporal Frequency',
+            temp_freq = st.selectbox('4. Set Temporal Frequency',
                                      ('Native Temporal Resolution (12 days)',
                                       'Monthly',
                                       'Quarterly'), key='temp_freq')
@@ -59,25 +86,17 @@ def app():
                               'Monthly': 'monthly',
                               'Quarterly': 'quarterly'}
 
-            vis_method = st.selectbox('Select Visualiation Method',
+            vis_method = st.selectbox('5. Select Visualiation Method',
                                       ('RGB',
-                                       'RGB + Water Mosaic',
-                                       'Single Band (Water Mask)',
-                                       'Single Band VH (B&W)',
-                                       'Single Band VV (B&W)',
-                                       'Single Band VH (W&B)',
-                                       'Single Band VV (W&B)',
+                                       'Single Band VV',
+                                       'Single Band VH',
                                        ),
                                       key='vis_method'
                                       )
 
             vis_methods = {'RGB': 'rgb',
-                           'Single Band (Water Mask)': 'water_mask_only',
-                           'RGB + Water Mosaic': 'rgb_water_mosaic',
-                           'Single Band VH (B&W)': 'single_band_VH',
-                           'Single Band VV (B&W)': 'single_band_VV',
-                           'Single Band VH (W&B)': 'single_band_VH_R',
-                           'Single Band VV (W&B)': 'single_band_VV_R'
+                           'Single Band VH': 'single_band_VH',
+                           'Single Band VV': 'single_band_VV',
                            }
 
             if vis_method == 'Water Mask':
@@ -86,7 +105,7 @@ def app():
                 copywrite_font_color = 'black'
 
             framepersecond = st.slider(
-                'Frame Per Second (Animation Speed)',
+                '6. Frame Per Second (Animation Speed)',
                 max_value=5,
                 min_value=1,
                 value=3,
@@ -94,7 +113,7 @@ def app():
             )
 
             date_font_size = st.slider(
-                'Date Label Font Size',
+                '7. Font Size(Date Label)',
                 max_value=50,
                 min_value=10,
                 value=25,
@@ -103,11 +122,11 @@ def app():
             )
 
             date_font_color = st.color_picker(
-                'Date Label Font Color', '#000000',
+                '8. Font Color(Date Label)', '#000000',
                 key='date_font_color')
 
             dimension = st.slider(
-                'GIF Dimensions',
+                '9. GIF Dimensions',
                 max_value=1080,
                 min_value=720,
                 value=900,
@@ -121,7 +140,11 @@ def app():
                 
 
                 try:
-                    out_gif = GERD_SAR_timelaspe(GERD_aoi,
+                    if study_areas[st.session_state.study_area] == GERD_aoi:
+                        zoom_level = "Zoom Level: 11"
+                    else:
+                        zoom_level = "Zoom Level: 14"
+                    out_gif = GERD_SAR_timelaspe(study_areas[st.session_state.study_area],
                                                  startYear=start_date.year,
                                                  startMonth=start_date.month,
                                                  startDay=start_date.day,
@@ -134,7 +157,9 @@ def app():
                                                  dates_font_color=date_font_color,
                                                  framesPerSecond=framepersecond,
                                                  copywrite_font_color=copywrite_font_color,
-                                                 dimensions=dimension
+                                                 dimensions=dimension,
+                                                 zoom_level_font_size=15,
+                                                 zoom_level=zoom_level
                                                  )
                     if out_gif is None:
                         if start_date < valid_start_date:
@@ -147,11 +172,11 @@ def app():
                             st.stop()
                         elif (end_date - start_date).days < 0:
                             st.error(
-                                'The start date should be prior the end date')
+                                'The start date should be before the end date')
                             st.stop()
                         elif 0 <= (end_date - start_date).days < 30:
                             st.error(
-                                'It should be at least one month between the start date and the end date')
+                                'It should be at least one month between the start date and end date')
                             st.stop()
                         else:
                             st.error(
