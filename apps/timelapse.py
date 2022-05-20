@@ -156,7 +156,8 @@ def app():
                     st.error(
                         'It should be at least one month between the start and end dates')
                     st.stop()
-
+                st.info("Loading....")
+                st.info('Please be patient. It just takes a few seconds.')
                 try:
                     if study_areas[st.session_state.study_area] == GERD_aoi:
                         zoom_level = "Zoom Level: 11"
@@ -188,7 +189,7 @@ def app():
                 else:
 
                     try:
-
+                        
                         file_ = open(out_gif, "rb")
                         contents = file_.read()
                         data_url = base64.b64encode(contents).decode("utf-8")

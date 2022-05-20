@@ -63,6 +63,7 @@ def app():
                         st.error(
                             'It should be at least one month between the start and end dates')
                         st.stop()
+
                 except:
                     pass
                 else:
@@ -93,7 +94,8 @@ def app():
             compute_stats = st.form_submit_button("Compute")
             if compute_stats:
                 try:
-
+                    st.info("Loading....")
+                    st.info('Please be patient. It takes almost one minute.')
                     if 'dates' not in st.session_state:
                         st.session_state.dates = dates
                     system_start_time = st.session_state.dates_dict[st.session_state.dates]
@@ -116,7 +118,7 @@ def app():
                         st.markdown(
                             '3. Waterbody predicted volume (billion m³)')
                         st.caption(
-                            '(Predicted based on area change)')
+                            '(Predicted based on the change in area)')
                         st.write(round(predicted_volume, 3))
 
                     else:
