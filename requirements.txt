@@ -9,3 +9,4 @@ nbserverproxy
 streamlit
 streamlit-option-menu
 iteru
+protobuf==3.19.0
