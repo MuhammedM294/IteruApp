@@ -9,4 +9,4 @@ App URL: <https://share.streamlit.io/muhammedm294/iteruapp>
 
 # The app workflow
 
-![](https://github.com/MuhammedM294/data/blob/main/img/Figure%2013.png)
+![](https://github.com/MuhammedM294/data/blob/main/img/Workflow.png)
