@@ -181,9 +181,22 @@ def app():
                                                  zoom_level=zoom_level
                                                  )
                     if out_gif is None:
-                        st.error(
-                            'Many images requested; reduce the gif dimensions or timespan')
-                        st.stop()
+                        col = S1_SAR_col(aoi = study_areas[st.session_state.study_area],
+                                         startYear=start_date.year,
+                                         startMonth=start_date.month,
+                                         startDay=start_date.day,
+                                         endYear=end_date.year,
+                                         endMonth=end_date.month,
+                                         endDay=end_date.day,
+                                         )
+                        if col[0].size().getInfo() == 0:
+                            st.error('No images available during the requested timespan')
+                            st.stop()
+                        else:
+                            
+                            st.error(
+                                'Many images requested; reduce the gif dimensions or timespan')
+                            st.stop()
                 except Exception as e:
                     print(e)
                 else:
