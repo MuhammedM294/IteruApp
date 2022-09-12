@@ -12,7 +12,7 @@ from statistics import mode
 
 def app():
 
-    st.header('Compute waterbody statistcis')
+    st.header('Compute waterbody statistics')
     st.markdown(
         'This app is for computing the surface water area and the waterbody volume of the GERD reservoir.')
 
