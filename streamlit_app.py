@@ -34,7 +34,7 @@ with st.sidebar:
     st.sidebar.info(
         """
         This web [app](https://share.streamlit.io/muhammedm294/iteruapp) is maintained by Muhammed Abdelaal. 
-        You can follow me on social media:[GitHub](https://github.com/MuhammedM294) | [Twitter](https://twitter.com/MuhammedM294).
+        You can follow me on social media:[GitHub](https://github.com/MuhammedM294).
         You can reach me at muhammedaabdelaal@gmail.com. 
         Source code: [Iteru](https://github.com/MuhammedM294/Iteru)
                      [IteruApp](https://github.com/MuhammedM294/IteruApp)
