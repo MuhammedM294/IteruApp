@@ -20,7 +20,7 @@ def app():
         try:
             
             m = Map(zoom=10, center=(10.75, 35.2))
-            m.remove_layer(m.layers[1])
+            #m.remove_layer(m.layers[1])
             m.addLayer(GERD_aoi, {'color': 'red',
                                 }, 'GERD AOI(Zoom 11)')
             m.addLayer(aois['zoom_14_1'], {'color': 'blue',
