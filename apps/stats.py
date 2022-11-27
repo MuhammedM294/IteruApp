@@ -22,7 +22,7 @@ def app():
         try:
 
             m = Map(zoom=10, center=(10.75, 35.2))
-            m.remove_layer(m.layers[1])
+            #m.remove_layer(m.layers[1])
             m.addLayer(GERD_aoi_dam, {'color': 'red',
                                       }, 'GERD-AOI')
             m.layers[1].opacity = 0.1
