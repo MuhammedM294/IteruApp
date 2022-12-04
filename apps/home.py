@@ -13,7 +13,7 @@ def app():
     """
     )
 
-    st.subheader('Sentinel-2 RGB(Acquired on 09-05-2022)')
+    st.subheader('Sentinel-2 RGB (Acquired on 09-05-2022)')
     st.image(
         'https://github.com/MuhammedM294/data/raw/main/gifs/S2_2022_05_09.png')
     row1_col1, row1_col2 = st.columns(2)
