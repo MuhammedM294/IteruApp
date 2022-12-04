@@ -14,7 +14,7 @@ def app():
 
     st.header('Compute waterbody statistics')
     st.markdown(
-        'This app is for computing the surface water area and the waterbody volume of the GERD reservoir.')
+        'This feature computes the surface water area and the waterbody volume of the GERD reservoir.')
 
     row1_col1, row1_col2 = st.columns([2, 1])
 

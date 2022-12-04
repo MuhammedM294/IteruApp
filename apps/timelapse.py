@@ -6,7 +6,7 @@ import base64
 from ipyleaflet import FullScreenControl
 from iteru import *
 from ipywidgets import HTML
-#import geemap
+import geemap.foliumap as geemap
 
 
 def app():
@@ -20,9 +20,9 @@ def app():
     with row1_col1:
         try:
             
-            m = Map(basemap="HYBRID",zoom=10, center=(10.75, 35.2))
+            #m = Map(basemap="HYBRID",zoom=10, center=(10.75, 35.2))
             #m.remove_layer(m.layers[1])
-            #m = geemap.Map(basemap="HYBRID",plugin_Draw=True,Draw_export=True,locate_control=True,plugin_LatLngPopup=False,)
+            m = geemap.Map(basemap="HYBRID",plugin_Draw=True,Draw_export=True,locate_control=True,plugin_LatLngPopup=False,)
             #m.add_basemap("ROADMAP")
             m.addLayer(GERD_aoi, {'color': 'red',
                                 }, 'GERD AOI(Zoom 11)')
