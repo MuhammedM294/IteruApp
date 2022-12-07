@@ -8,7 +8,7 @@ from iteru import *
 from ipywidgets import HTML
 import ee
 from statistics import mode
-
+import geemap.foliumap as geemap
 
 def app():
 
@@ -21,11 +21,11 @@ def app():
     with row1_col1:
         try:
 
-            m = Map(zoom=10, center=(10.75, 35.2))
+            m = geemap.Map(zoom=10, center=(10.88, 35.2))
             #m.remove_layer(m.layers[1])
             m.addLayer(GERD_aoi_dam, {'color': 'red',
                                       }, 'GERD-AOI')
-            m.layers[1].opacity = 0.1
+            #m.layers[1].opacity = 0.1
             m.to_streamlit(height=650, width=800, responsive=True)
         except:
             st.subheader('Please, reload the page')
@@ -136,8 +136,8 @@ def app():
                     with row1_col1:
                         try:
 
-                            m = Map(zoom=10, center=(10.75, 35.2))
-                            m.remove_layer(m.layers[1])
+                            m = geemap.Map(zoom=10, center=(10.75, 35.2))
+                            #m.remove_layer(m.layers[1])
 
                             m.add_ee_layer(
                                 layers['SAR_VV'], {'min': -30, 'max': 5, 'bands': ['VV_Filtered']}, 'SAR_Image')

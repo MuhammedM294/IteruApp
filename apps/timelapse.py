@@ -6,7 +6,7 @@ import base64
 from ipyleaflet import FullScreenControl
 from iteru import *
 from ipywidgets import HTML
-import geemap
+import geemap.foliumap as geemap
 
 
 def app():
@@ -18,9 +18,9 @@ def app():
     row1_col1, row1_col2 = st.columns([2, 1])
 
     with row1_col1:
-        #try:
+        try:
             
-            m =geemap.folium.Map(zoom=10, center=(10.75, 35.2))
+            m =geemap.Map(zoom=10, center=(10.88, 35.2))
             #m.remove_layer(m.layers[1])
             m.addLayer(GERD_aoi, {'color': 'red',
                                 }, 'GERD AOI(Zoom 11)')
@@ -40,13 +40,14 @@ def app():
                                         }, 'GERD AOI(Zoom 14 Area 7)')
             m.addLayer(aois['zoom_14_6'], {'color': 'blue',
                                         }, 'GERD AOI(Zoom 14 Area 8)')
-            m.layers[1].opacity = 0.2
+            #m.layers[1].opacity = 0.2
             for i in range(2, 10):
-                m.layers[i].opacity = 0.2
+                #m.layers[i].opacity = 0.2
+                pass
             m.to_streamlit(height=650, width=800, responsive=True)
            
-        #except:
-            #st.subheader('Please, reload the page')
+        except:
+            st.subheader('Please, reload the page')
 
     with row1_col2:
 
