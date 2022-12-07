@@ -3,8 +3,8 @@ geemap ==0.16.0
 geopandas
 jupyter-server-proxy
 keplergl
-leafmap
-localtileserver
+leafmap ==0.10.3
+localtileserver ==0.5.10
 nbserverproxy
 streamlit
 streamlit-option-menu
