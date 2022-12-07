@@ -1,5 +1,5 @@
 --find-links=https://girder.github.io/large_image_wheels GDAL
-geemap ==0.9.0
+geemap ==0.16.0
 geopandas
 jupyter-server-proxy
 keplergl
