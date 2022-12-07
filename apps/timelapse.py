@@ -64,33 +64,43 @@ def app():
                            'Area 7(Zoom Level 14)': aois['zoom_14_8'],
                            'Area 8(Zoom Level 14)': aois['zoom_14_6'],
                            }
+            
+                
+            st.markdown('1. Select study area')
             study_area = st.radio('1. Select study area',
                                   list(study_areas.keys()),
-                                  key='study_area')
+                                  key='study_area',
+                                  label_visibility  = "collapsed")
             if 'study_area' not in st.session_state:
                 st.session_state.study_area = study_area
-
+            
+            
+            
+            st.markdown('2. Select start date (NOT before 1 July 2020)')
             start_date = st.date_input(
-                '2. Select start date (NOT before 1 July 2020)', valid_start_date, key='start_date')
-
+                '2. Select start date (NOT before 1 July 2020)', valid_start_date, key='start_date',label_visibility  = "collapsed" )
+            
+            st.markdown('3. Select end date')
             end_date = st.date_input(
-                '3. Select end date', valid_end_date, key='end_date')
-
+                '3. Select end date', valid_end_date, key='end_date', label_visibility  = "collapsed")
+            
+            st.markdown('4. Set temporal frequency')
             temp_freq = st.selectbox('4. Set temporal frequency',
                                      ('Native temporal resolution (12 days)',
                                       'Monthly',
-                                      'Quarterly'), key='temp_freq')
+                                      'Quarterly'), key='temp_freq' , label_visibility  = "collapsed")
 
             temp_freq_dict = {'Native temporal resolution (12 days)': None,
                               'Monthly': 'monthly',
                               'Quarterly': 'quarterly'}
-
+            
+            st.markdown('5. Select visualiation method')
             vis_method = st.selectbox('5. Select visualiation method',
                                       ('RGB',
                                        'Single Band VV',
                                        'Single Band VH',
                                        ),
-                                      key='vis_method'
+                                      key='vis_method', label_visibility  = "collapsed"
                                       )
 
             vis_methods = {'RGB': 'rgb',
@@ -102,34 +112,38 @@ def app():
                 copywrite_font_color = 'white'
             else:
                 copywrite_font_color = 'black'
-
+            
+            st.markdown('6. Frame per second (animation speed)')
             framepersecond = st.slider(
                 '6. Frame per second (animation speed)',
                 max_value=5,
                 min_value=1,
                 value=3,
-                key='framepersecond'
+                key='framepersecond', label_visibility  = "collapsed"
             )
-
+            
+            st.markdown('7. Font size(date label)')
             date_font_size = st.slider(
                 '7. Font size(date label)',
                 max_value=50,
                 min_value=10,
                 value=25,
-                key='date_font_size'
+                key='date_font_size', label_visibility  = "collapsed"
 
             )
-
+            
+            st.markdown('8. Font color(date label)')
             date_font_color = st.color_picker(
                 '8. Font color(date label)', '#000000',
-                key='date_font_color')
-
+                key='date_font_color', label_visibility  = "collapsed")
+            
+            st.markdown('9. GIF dimensions')
             dimension = st.slider(
                 '9. GIF dimensions',
                 max_value=1080,
                 min_value=720,
                 value=900,
-                key=' dimension'
+                key=' dimension', label_visibility  = "collapsed"
             )
 
             timelapse_button = st.form_submit_button("Submit")
