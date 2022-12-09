@@ -139,9 +139,9 @@ def app():
                             m = geemap.Map(zoom=10, center=(10.75, 35.2))
                             #m.remove_layer(m.layers[1])
 
-                            m.add_ee_layer(
+                            m.addLayer(
                                 layers['SAR_VV'], {'min': -30, 'max': 5, 'bands': ['VV_Filtered']}, 'SAR_Image')
-                            m.add_ee_layer(ee.FeatureCollection(
+                            m.addLayer(ee.FeatureCollection(
                                 layers['Waterbody'].geometry()), {'color': 'blue'}, 'Waterbody')
                             m.addLayer(GERD_aoi_dam, {'color': 'red',
                                                       }, 'GERD-AOI')
