@@ -136,7 +136,7 @@ def app():
                     with row1_col1:
                         try:
 
-                            m = geemap.Map(zoom=10, center=(10.75, 35.2))
+                            m = geemap.Map(zoom=10, center=(10.88, 35.2))
                             #m.remove_layer(m.layers[1])
 
                             m.addLayer(
