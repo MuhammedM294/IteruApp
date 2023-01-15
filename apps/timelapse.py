@@ -225,10 +225,9 @@ def app():
                         data_url = base64.b64encode(contents).decode("utf-8")
                         file_.close()
 
-                        m.image_overlay(url=out_gif,
-                                        bounds=((10.522199, 35.008243),
-                                                (11.266588, 35.387092)),
-                                        name='GERD_Timelapse')
+                        #m.image_overlay(url=out_gif,bounds=((10.522199, 35.008243),
+                                                #(11.266588, 35.387092)),
+                                        #name='GERD_Timelapse')
 
                         row1_col1.empty()
 
