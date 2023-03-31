@@ -1,8 +1,7 @@
 # Streamlit-IteruApp
 A Google Earth Engine-Based Interactive Web Application for Continuously Monitoring the GERD Reservoir in Ethiopia Using Sentinel-1 SAR GRD, [iteru](https://github.com/MuhammedM294/Iteru), and [geemap](https://github.com/giswqs/geemap).
 
-
-App URL: <https://share.streamlit.io/muhammedm294/iteruapp>
+[Link](https://share.streamlit.io/muhammedm294/iteruapp)
 
 # The App Interface
 
