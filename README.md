@@ -3,6 +3,8 @@ A Google Earth Engine-Based Interactive Web Application for Continuously Monitor
 
 [Link](https://share.streamlit.io/muhammedm294/iteruapp)
 
+![](https://github.com/MuhammedM294/data/blob/main/gifs/rgb.gif)
+
 # The App Interface
 
 ![](https://github.com/MuhammedM294/data/blob/d02cf385dc26c31d0ba2a8e608723c93efc4352e/img/home.png)
