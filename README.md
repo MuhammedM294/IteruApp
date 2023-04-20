@@ -12,3 +12,6 @@ A Google Earth Engine-Based Interactive Web Application for Continuously Monitor
 # The App Workflow
 
 ![](https://github.com/MuhammedM294/data/blob/main/gifs/Workflow.png)
+
+# Reference
+[Master Thesis](https://www.researchgate.net/publication/362678202_A_Google_Earth_Engine-Based_Interactive_Web_Application_for_Continuously_Monitoring_the_GERD_Reservoir_in_Ethiopia?channel=doi&linkId=62f7c5c4c6f6732999c99a5f&showFulltext=true)
