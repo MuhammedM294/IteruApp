@@ -3,7 +3,8 @@ A Google Earth Engine-Based Interactive Web Application for Continuously Monitor
 
 [Link](https://share.streamlit.io/muhammedm294/iteruapp)
 
-# How to Use?
+# How to Use? Link
+# Timelapse Samples
 
 ![](https://github.com/MuhammedM294/data/blob/main/gifs/rgb_water.gif) ![](https://github.com/MuhammedM294/data/blob/main/gifs/VV.gif)
 
