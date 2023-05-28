@@ -29,3 +29,7 @@
 ###### Regarding the GIF Dimension, the larger the selected dimension, the less number of images can be processed.  
 
 ![image](https://github.com/MuhammedM294/IteruApp/assets/89984604/a1b03f91-01a2-4215-8f23-4d0956289cdc)
+
+### 1.4 The created timelapse will appears on the same page
+
+![](https://github.com/MuhammedM294/data/blob/main/gifs/Tutorial-timelapse.gif)
