@@ -12,6 +12,7 @@ import geemap.foliumap as geemap
 def app():
 
     st.header('Create Timelapse')
+    st.header('[Tutorial](https://github.com/MuhammedM294/IteruApp/blob/master/Tutorial/README.md)')
     st.markdown(
         'This app is for creating the GERD time-lapses from 2020-07-01 so far.')
 
@@ -96,7 +97,7 @@ def app():
                               'Monthly': 'monthly',
                               'Quarterly': 'quarterly'}
             
-            st.markdown('5. Select visualiation method')
+            st.markdown('5. Select visualization method')
             vis_method = st.selectbox('5. Select visualiation method',
                                       ('RGB',
                                        'Single Band VV',
